@@ -1,0 +1,163 @@
+.search-container {
+  padding: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  margin-bottom: 32px;
+}
+
+.page-header h1 {
+  margin: 0 0 8px 0;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.page-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 1rem;
+}
+
+.search-section {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 32px;
+  align-items: flex-end;
+}
+
+.search-field {
+  flex: 1;
+  max-width: 600px;
+}
+
+.search-filters {
+  margin-bottom: 32px;
+}
+
+.search-filters h3 {
+  margin: 0 0 16px 0;
+  color: #374151;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.filter-chips mat-chip {
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.search-results h3 {
+  margin: 0 0 24px 0;
+  color: #374151;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+}
+
+.result-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.result-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.result-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  font-size: 0.875rem;
+}
+
+.result-type {
+  background: #eff6ff;
+  color: #1d4ed8;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: 500;
+}
+
+.result-date {
+  color: #6b7280;
+}
+
+.empty-state,
+.welcome-state {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.empty-state mat-icon,
+.welcome-state mat-icon {
+  font-size: 64px;
+  width: 64px;
+  height: 64px;
+  color: #9ca3af;
+  margin-bottom: 16px;
+}
+
+.empty-state h2,
+.welcome-state h2 {
+  margin: 0 0 8px 0;
+  color: #4b5563;
+}
+
+.empty-state p,
+.welcome-state p {
+  margin: 0 0 24px 0;
+  color: #6b7280;
+}
+
+.quick-searches {
+  margin-top: 32px;
+}
+
+.quick-searches h4 {
+  margin: 0 0 16px 0;
+  color: #374151;
+  font-weight: 500;
+}
+
+.quick-search-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.quick-search-chips button {
+  cursor: pointer;
+  margin: 4px;
+}
+
+@media (max-width: 768px) {
+  .search-container {
+    padding: 16px;
+  }
+
+  .search-section {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .result-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,75 @@
+<div class="search-container">
+  <div class="page-header">
+    <h1>Search</h1>
+    <p>Find documents, users, and content</p>
+  </div>
+
+  <div class="search-section">
+    <mat-form-field appearance="outline" class="search-field">
+      <mat-label>Search for anything...</mat-label>
+      <input matInput [formControl]="searchControl" placeholder="Enter keywords, tags, or content">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    
+    <button mat-raised-button color="primary" (click)="performSearch()">
+      <mat-icon>search</mat-icon>
+      Search
+    </button>
+  </div>
+
+  <div class="search-filters">
+    <h3>Filter by:</h3>
+    <div class="filter-chips">
+      <mat-chip-set aria-label="Filter selection">
+        <mat-chip-option [selected]="selectedFilter === 'all'" (click)="setFilter('all')">All</mat-chip-option>
+        <mat-chip-option [selected]="selectedFilter === 'documents'" (click)="setFilter('documents')">Documents</mat-chip-option>
+        <mat-chip-option [selected]="selectedFilter === 'users'" (click)="setFilter('users')">Users</mat-chip-option>
+        <mat-chip-option [selected]="selectedFilter === 'tags'" (click)="setFilter('tags')">Tags</mat-chip-option>
+      </mat-chip-set>
+    </div>
+  </div>
+
+  <div class="search-results" *ngIf="searchResults.length > 0">
+    <h3>Search Results ({{ searchResults.length }})</h3>
+    <div class="results-grid">
+      <mat-card *ngFor="let result of searchResults" class="result-card">
+        <mat-card-header>
+          <mat-card-title>{{ result.title }}</mat-card-title>
+          <mat-card-subtitle>{{ result.type }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ result.description }}</p>
+          <div class="result-meta">
+            <span class="result-type">{{ result.type }}</span>
+            <span class="result-date">{{ result.date | date }}</span>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary">View</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
+
+  <div class="empty-state" *ngIf="hasSearched && searchResults.length === 0">
+    <mat-icon>search_off</mat-icon>
+    <h2>No results found</h2>
+    <p>Try adjusting your search terms or filters</p>
+  </div>
+
+  <div class="welcome-state" *ngIf="!hasSearched">
+    <mat-icon>search</mat-icon>
+    <h2>Search Knowledge Base</h2>
+    <p>Enter keywords to find documents, users, and content across the platform</p>
+    
+    <div class="quick-searches">
+      <h4>Popular searches:</h4>
+      <div class="quick-search-chips">
+        <button mat-stroked-button (click)="quickSearch('angular')">Angular</button>
+        <button mat-stroked-button (click)="quickSearch('typescript')">TypeScript</button>
+        <button mat-stroked-button (click)="quickSearch('guidelines')">Guidelines</button>
+        <button mat-stroked-button (click)="quickSearch('API')">API</button>
+      </div>
+    </div>
+  </div>
+</div>

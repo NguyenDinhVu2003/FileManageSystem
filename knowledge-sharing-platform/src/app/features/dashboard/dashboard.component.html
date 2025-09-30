@@ -1,0 +1,208 @@
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section">
+    <h1>
+      Welcome back, {{ (currentUser$ | async)?.firstName }}!
+      <span class="welcome-emoji">👋</span>
+    </h1>
+    <p>Discover, share, and collaborate on knowledge within your organization</p>
+  </div>
+
+  <!-- Statistics Grid -->
+  <div class="stats-grid">
+    <div class="stat-card total-documents">
+      <div class="stat-header">
+        <div class="stat-icon">lib</div>
+        <div class="stat-info">
+          <div class="stat-number">{{ (stats$ | async)?.totalDocuments || 0 }}</div>
+          <div class="stat-label">Total Documents</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card popular-week">
+      <div class="stat-header">
+        <div class="stat-icon">tre</div>
+        <div class="stat-info">
+          <div class="stat-number">{{ (stats$ | async)?.popularThisWeek || 0 }}</div>
+          <div class="stat-label">Popular This Week</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card my-documents">
+      <div class="stat-header">
+        <div class="stat-icon">per</div>
+        <div class="stat-info">
+          <div class="stat-number">{{ (stats$ | async)?.myDocuments || 0 }}</div>
+          <div class="stat-label">My Documents</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stat-card added-week">
+      <div class="stat-header">
+        <div class="stat-icon">scl</div>
+        <div class="stat-info">
+          <div class="stat-number">{{ (stats$ | async)?.addedThisWeek || 0 }}</div>
+          <div class="stat-label">Added This Week</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Documents Grid -->
+  <div class="documents-grid">
+    <!-- Recent Documents -->
+    <div class="documents-section recent-documents">
+      <div class="section-header">
+        <div class="section-title">
+          <h3>
+            <span class="section-icon">scl</span>
+            Recent Documents
+          </h3>
+          <a href="#" class="view-all-btn">
+            <span>View All</span>
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="documents-list">
+        <div class="document-item" *ngFor="let doc of (recentDocuments$ | async)">
+          <div class="document-content">
+            <div class="document-avatar">pict</div>
+            <div class="document-info">
+              <div class="document-title" (click)="viewDocument(doc.id)">{{ doc.title }}</div>
+              <div class="document-description">{{ doc.description }}</div>
+              <div class="document-meta">
+                <span class="meta-item">
+                  <mat-icon>person</mat-icon>
+                  {{ doc.author.firstName }} {{ doc.author.lastName }}
+                </span>
+                <span class="meta-item">
+                  <mat-icon>schedule</mat-icon>
+                  {{ doc.createdAt | date:'MMM d, y' }}
+                </span>
+                <span class="meta-item">
+                  <mat-icon>visibility</mat-icon>
+                  {{ doc.viewCount || 200 }}
+                </span>
+              </div>
+              <div class="document-tags" *ngIf="doc.tags?.length">
+                <span class="tag" *ngFor="let tag of doc.tags">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn" (click)="editDocument(doc.id)" title="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="action-btn" (click)="shareDocument(doc.id)" title="Share">
+                <mat-icon>share</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular Documents -->
+    <div class="documents-section popular-documents">
+      <div class="section-header">
+        <div class="section-title">
+          <h3>
+            <span class="section-icon">tre</span>
+            Popular Documents
+          </h3>
+          <a href="#" class="view-all-btn">
+            <span>View All</span>
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="documents-list">
+        <div class="document-item" *ngFor="let doc of (popularDocuments$ | async); let i = index">
+          <div class="document-content">
+            <div class="document-avatar" [style.background]="i === 0 ? '#3b82f6' : '#e0e7ff'" 
+                 [style.color]="i === 0 ? 'white' : '#3730a3'">
+              <mat-icon *ngIf="i === 0">star</mat-icon>
+              <span *ngIf="i !== 0">pict</span>
+            </div>
+            <div class="document-info">
+              <div class="document-title" (click)="viewDocument(doc.id)">{{ doc.title }}</div>
+              <div class="document-description">{{ doc.description }}</div>
+              <div class="document-meta">
+                <span class="meta-item">
+                  <mat-icon>person</mat-icon>
+                  {{ doc.author.firstName }} {{ doc.author.lastName }}
+                </span>
+                <span class="meta-item">
+                  <mat-icon>star</mat-icon>
+                  {{ doc.rating.average || 4.2 }} ({{ doc.rating.count || 18 }})
+                </span>
+              </div>
+              <div class="document-tags" *ngIf="doc.tags?.length">
+                <span class="tag" *ngFor="let tag of doc.tags">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn" (click)="editDocument(doc.id)" title="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="action-btn" (click)="shareDocument(doc.id)" title="Share">
+                <mat-icon>share</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- My Documents -->
+    <div class="documents-section my-documents">
+      <div class="section-header">
+        <div class="section-title">
+          <h3>
+            <span class="section-icon">per</span>
+            My Documents
+          </h3>
+          <a href="#" class="view-all-btn">
+            <span>View All</span>
+            <mat-icon>arrow_forward</mat-icon>
+          </a>
+        </div>
+      </div>
+      <div class="documents-list">
+        <div class="document-item" *ngFor="let doc of (userDocuments$ | async)">
+          <div class="document-content">
+            <div class="document-avatar">pict</div>
+            <div class="document-info">
+              <div class="document-title" (click)="viewDocument(doc.id)">{{ doc.title }}</div>
+              <div class="document-description">{{ doc.description }}</div>
+              <div class="document-meta">
+                <span class="meta-item">
+                  <mat-icon>schedule</mat-icon>
+                  {{ doc.createdAt | date:'MMM d, y' }}
+                </span>
+                <span class="meta-item">
+                  <mat-icon>visibility</mat-icon>
+                  {{ doc.privacy === 'public' ? 'Public' : 'Private' }}
+                </span>
+              </div>
+              <div class="document-tags" *ngIf="doc.tags?.length">
+                <span class="tag" *ngFor="let tag of doc.tags">{{ tag }}</span>
+              </div>
+            </div>
+            <div class="document-actions">
+              <button class="action-btn" (click)="editDocument(doc.id)" title="Edit">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button class="action-btn" (click)="shareDocument(doc.id)" title="Share">
+                <mat-icon>share</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
