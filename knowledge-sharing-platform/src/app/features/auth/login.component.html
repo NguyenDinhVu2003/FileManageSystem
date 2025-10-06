@@ -1,0 +1,108 @@
+<div class="login-container">
+  <div class="login-card">
+    <!-- Logo section -->
+    <div class="logo-container">
+      
+      <div class="logo-text">
+        <h1>Login</h1>
+       
+      </div>
+    </div>
+
+    <!-- Welcome section -->
+    <div class="welcome-section">
+      <p>Welcome back! Please sign in to your account</p>
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <!-- Email Field -->
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            formControlName="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+          >
+          <mat-error *ngIf="email?.hasError('required')">
+            Email is required
+          </mat-error>
+          <mat-error *ngIf="email?.hasError('email')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Password Field -->
+      <div class="form-field">
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            [type]="hidePassword ? 'password' : 'text'"
+            formControlName="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
+          >
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword = !hidePassword"
+            *ngIf="false"
+          >
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error *ngIf="password?.hasError('required')">
+            Password is required
+          </mat-error>
+          <mat-error *ngIf="password?.hasError('minlength')">
+            Password must be at least 6 characters long
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <!-- Remember Me & Forgot Password -->
+      <div class="form-options">
+        <mat-checkbox formControlName="rememberMe" class="remember-checkbox">
+          Remember me
+        </mat-checkbox>
+        <a href="#" class="forgot-link">Forgot Password?</a>
+      </div>
+
+      <!-- Error Message -->
+      <div *ngIf="error$ | async as error" class="error-message">
+        <span>{{ error }}</span>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        mat-raised-button
+        type="submit"
+        [disabled]="loginForm.invalid || (loading$ | async)"
+        class="login-button"
+      >
+        <span *ngIf="!(loading$ | async)" class="button-content">
+          Sign In
+        </span>
+        <div *ngIf="loading$ | async" class="loading-content">
+          <mat-spinner diameter="20"></mat-spinner>
+          <span>Signing in...</span>
+        </div>
+      </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="login-footer">
+      <div class="divider">
+        <span>Don't have an account?</span>
+      </div>
+      <button type="button" class="signup-button">
+        Register
+      </button>
+    </div>
+  </div>
+</div>

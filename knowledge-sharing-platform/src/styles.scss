@@ -1,1 +1,36 @@
 /* You can add global styles to this file, and also import other style files */
+
+// Reset body và html background để login background hiển thị đúng
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: transparent !important;
+}
+
+// Đảm bảo router outlet không có background
+router-outlet + * {
+  background: transparent;
+}
+
+// Angular Material theme overrides
+.mat-app-background {
+  background: transparent !important;
+}
+
+// Force Material Design form fields to use custom styling
+.mat-mdc-form-field {
+  .mdc-notched-outline {
+    display: none !important;
+  }
+  
+  .mat-mdc-form-field-focus-overlay {
+    display: none !important;
+  }
+  
+  &.mat-form-field-appearance-outline {
+    .mdc-notched-outline {
+      display: none !important;
+    }
+  }
+}

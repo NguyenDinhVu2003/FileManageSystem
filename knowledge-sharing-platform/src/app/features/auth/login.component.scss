@@ -1,0 +1,414 @@
+// Host styling - Purple gradient background
+:host {
+  display: block;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+// Main container
+.login-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  position: relative;
+}
+
+// Login card - White solid background
+.login-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 40px 32px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  position: relative;
+  animation: slideInUp 0.6s ease-out;
+  
+  form {
+    width: 100%;
+  }
+}
+
+// Logo section
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 32px;
+  
+  .logo-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    color: white;
+    font-size: 24px;
+  }
+  
+  .logo-text {
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #1a202c;
+      letter-spacing: -0.5px;
+    }
+    
+    p {
+      margin: 4px 0 0 0;
+      font-size: 0.9rem;
+      color: #718096;
+      font-weight: 400;
+    }
+  }
+}
+
+// Welcome section
+.welcome-section {
+  text-align: center;
+  margin-bottom: 32px;
+  
+  h2 {
+    margin: 0 0 8px 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1a202c;
+  }
+  
+  p {
+    margin: 0;
+    color: #718096;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+}
+
+// Form fields styling
+.form-field {
+  margin-bottom: 24px;
+  position: relative;
+  
+  ::ng-deep {
+    .mat-mdc-form-field {
+      width: 100% !important;
+      display: block !important;
+      
+      .mat-mdc-text-field-wrapper {
+        background: #f7fafc !important;
+        border-radius: 8px !important;
+        border: 1px solid #e2e8f0 !important;
+        transition: all 0.3s ease !important;
+        width: 100% !important;
+        
+        &:hover {
+          border-color: #cbd5e0 !important;
+        }
+        
+        &.mdc-text-field--focused {
+          border-color: #667eea !important;
+          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1) !important;
+        }
+      }
+      
+      .mat-mdc-form-field-flex {
+        background: transparent !important;
+        border: none !important;
+        align-items: center !important;
+        width: 100% !important;
+      }
+      
+      .mat-mdc-form-field-infix {
+        padding: 14px 16px !important;
+        border: none !important;
+        min-height: auto !important;
+        width: 100% !important;
+        
+        input {
+          color: #1a202c !important;
+          caret-color: #667eea !important;
+          font-size: 0.95rem !important;
+          font-weight: 400 !important;
+          line-height: 1.5 !important;
+          padding: 0 !important;
+          margin: 0 !important;
+          
+          &::placeholder {
+            color: #a0aec0 !important;
+            opacity: 1 !important;
+          }
+        }
+      }
+      
+      .mat-mdc-form-field-subscript-wrapper {
+        display: none !important;
+      }
+      
+      .mdc-floating-label {
+        color: #718096 !important;
+        font-size: 0.95rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        left: 16px !important;
+        
+        &.mdc-floating-label--float-above {
+          color: #667eea !important;
+          font-size: 0.8rem !important;
+          top: -8px !important;
+          transform: none !important;
+          background: white !important;
+          padding: 0 4px !important;
+        }
+      }
+      
+      .mdc-line-ripple {
+        display: none !important;
+      }
+      
+      .mdc-notched-outline {
+        display: none !important;
+      }
+      
+      .mat-mdc-form-field-error {
+        color: #e53e3e !important;
+        font-size: 0.8rem !important;
+        margin-top: 4px !important;
+        padding-left: 16px !important;
+      }
+    }
+    
+    .mat-mdc-input-element {
+      color: #1a202c !important;
+    }
+  }
+}
+
+// Form Options (Remember me & Forgot password)
+.form-options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 16px 0 32px 0;
+  width: 100%;
+  
+  .remember-checkbox {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    
+    ::ng-deep {
+      .mat-mdc-checkbox {
+        margin-right: 8px;
+        
+        .mdc-checkbox {
+          background: white;
+          border: 2px solid #e2e8f0;
+          border-radius: 4px;
+          transition: all 0.3s ease;
+          width: 18px;
+          height: 18px;
+          
+          &:hover {
+            border-color: #667eea;
+          }
+          
+          &.mdc-checkbox--checked {
+            background: #667eea;
+            border-color: #667eea;
+          }
+        }
+        
+        .mdc-form-field {
+          color: #4a5568 !important;
+          font-weight: 400;
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+      }
+    }
+  }
+  
+  .forgot-link {
+    color: #667eea;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    
+    &:hover {
+      color: #5a67d8;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Login Button - Purple gradient
+.login-button {
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  letter-spacing: 0.5px;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  &:not(:disabled):hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.5);
+  }
+  
+  &:not(:disabled):active {
+    transform: translateY(0);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    transform: none;
+  }
+  
+  .button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+  
+  .loading-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+}
+
+// Error message styling
+.error-message {
+  background: #fed7d7;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 12px 16px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+// Footer
+.login-footer {
+  text-align: center;
+  
+  .divider {
+    margin-bottom: 16px;
+    
+    span {
+      color: #718096;
+      font-size: 0.9rem;
+      font-weight: 400;
+    }
+  }
+  
+  .signup-button {
+    color: #667eea;
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      color: #5a67d8;
+      text-decoration: underline;
+    }
+  }
+}
+
+// Animations
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .login-container {
+    padding: 16px;
+  }
+  
+  .login-card {
+    padding: 32px 24px;
+    max-width: 350px;
+  }
+  
+  .logo-text h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px 20px;
+    max-width: 320px;
+  }
+  
+  .logo-container {
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  
+  .logo-text h1 {
+    font-size: 1.3rem;
+  }
+  
+  .form-options {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    
+    .forgot-link {
+      align-self: flex-end;
+    }
+  }
+}
